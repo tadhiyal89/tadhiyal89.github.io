@@ -25992,6 +25992,13 @@ var Search = function (_React$Component) {
 	}, {
 		key: 'planetInfo',
 		value: function planetInfo() {
+			var tempArr = [];
+			this.state.data.count > 0 && this.state.data.results.map(function (info, i) {
+				tempArr.push(info.population);
+			});
+			tempArr.sort(function (a, b) {
+				return b - a;
+			});
 			var html = this.state.data.count > 0 && this.state.data.results.map(function (info, i) {
 				var splitArr = info.url.split('/');
 				return _react2.default.createElement(
@@ -26009,8 +26016,12 @@ var Search = function (_React$Component) {
 								_react2.default.createElement(
 									'p',
 									null,
-									_react2.default.createElement(
-										'h2',
+									tempArr[0] === info.population ? _react2.default.createElement(
+										'h1',
+										null,
+										info.name
+									) : _react2.default.createElement(
+										'h3',
 										null,
 										info.name
 									)
@@ -26018,8 +26029,17 @@ var Search = function (_React$Component) {
 								_react2.default.createElement(
 									'p',
 									null,
-									'Population:',
-									info.population
+									tempArr[0] === info.population ? _react2.default.createElement(
+										'b',
+										null,
+										'Population:',
+										info.population
+									) : _react2.default.createElement(
+										'span',
+										null,
+										'Population:',
+										info.population
+									)
 								)
 							),
 							_react2.default.createElement(
