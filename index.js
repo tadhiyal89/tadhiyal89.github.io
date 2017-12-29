@@ -20990,13 +20990,13 @@ var _Search = __webpack_require__(110);
 
 var _Search2 = _interopRequireDefault(_Search);
 
-var _index = __webpack_require__(113);
+var _Index = __webpack_require__(113);
 
-var _index2 = _interopRequireDefault(_index);
+var _Index2 = _interopRequireDefault(_Index);
 
-var _index3 = __webpack_require__(114);
+var _Index3 = __webpack_require__(114);
 
-var _index4 = _interopRequireDefault(_index3);
+var _Index4 = _interopRequireDefault(_Index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21005,10 +21005,10 @@ var Root = function Root() {
 		_reactRouterDom.BrowserRouter,
 		null,
 		_react2.default.createElement(
-			_index4.default,
+			_Index4.default,
 			null,
 			_react2.default.createElement(_reactRouterDom.Route, { path: '/search', exact: true, component: _Search2.default }),
-			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/details/:id', component: _index2.default }),
+			_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/details/:id', component: _Index2.default }),
 			_react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, component: _Login2.default })
 		)
 	);
@@ -25930,6 +25930,7 @@ var Search = function (_React$Component) {
 		};
 		_this.planetInfo = _this.planetInfo.bind(_this);
 		_this.handleSorting = _this.handleSorting.bind(_this);
+		_this.searchTextRecord = _this.searchTextRecord.bind(_this);
 		return _this;
 	}
 
@@ -25944,7 +25945,7 @@ var Search = function (_React$Component) {
 	}, {
 		key: 'handleChange',
 		value: function handleChange(event) {
-			this.setState({ value: event.target.value });
+			this.setState({ value: event.target.value }, this.searchTextRecord());
 		}
 	}, {
 		key: 'handleSorting',
@@ -25962,8 +25963,8 @@ var Search = function (_React$Component) {
 			}
 		}
 	}, {
-		key: 'searchSubmit',
-		value: function searchSubmit() {
+		key: 'searchTextRecord',
+		value: function searchTextRecord() {
 			var _this2 = this;
 
 			var data = (0, _localStorage.loadState)();
@@ -26013,18 +26014,14 @@ var Search = function (_React$Component) {
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-md-6' },
-								_react2.default.createElement(
-									'p',
+								tempArr[0] === info.population ? _react2.default.createElement(
+									'h1',
 									null,
-									tempArr[0] === info.population ? _react2.default.createElement(
-										'h1',
-										null,
-										info.name
-									) : _react2.default.createElement(
-										'h3',
-										null,
-										info.name
-									)
+									info.name
+								) : _react2.default.createElement(
+									'h3',
+									null,
+									info.name
 								),
 								_react2.default.createElement(
 									'p',
@@ -26105,20 +26102,11 @@ var Search = function (_React$Component) {
 									{ className: 'row' },
 									_react2.default.createElement(
 										'div',
-										{ className: 'col-md-11' },
+										{ className: 'col-md-12' },
 										_react2.default.createElement(
 											'div',
 											{ className: 'form-group' },
 											_react2.default.createElement('input', { className: 'form-control ' + (this.state.searching ? 'loading' : ''), type: 'text', placeholder: 'Search', onChange: this.handleChange.bind(this) })
-										)
-									),
-									_react2.default.createElement(
-										'div',
-										{ className: 'col-md-1' },
-										_react2.default.createElement(
-											'button',
-											{ type: 'submit', disabled: this.state.value ? false : true, className: 'pull-right btn btn-success', onClick: this.searchSubmit.bind(this) },
-											'Search'
 										)
 									)
 								)
@@ -26377,13 +26365,9 @@ var Details = function (_React$Component) {
                       'div',
                       { className: 'col-md-6' },
                       _react2.default.createElement(
-                        'p',
+                        'h2',
                         null,
-                        _react2.default.createElement(
-                          'h2',
-                          null,
-                          this.state.data.name
-                        )
+                        this.state.data.name
                       ),
                       _react2.default.createElement(
                         'p',
@@ -26471,10 +26455,7 @@ var App = function (_React$Component) {
   function App(props) {
     _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-    debugger;
-    return _this;
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
   }
 
   _createClass(App, [{
