@@ -25945,6 +25945,7 @@ var Search = function (_React$Component) {
 	}, {
 		key: 'handleChange',
 		value: function handleChange(event) {
+			debugger;
 			this.setState({ value: event.target.value }, this.searchTextRecord());
 		}
 	}, {
